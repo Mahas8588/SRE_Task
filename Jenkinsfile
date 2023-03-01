@@ -5,14 +5,14 @@ node{
                 }
 
                 stage('Maven Build'){
-                def mavenHome = tool name: "Maven-3.8.6", type: "maven"
+                def mavenHome = tool name: "Maven-3.9.0", type: "maven"
                 def mavenCMD = "${mavenHome}/bin/mvn"
                 sh "${mavenCMD} clean package"
                 }
 
                 stage('SonarQube analysis') {
-                withSonarQubeEnv('Sonar-Server-7.8') {
-                def mavenHome = tool name: "Maven-3.8.6", type: "maven"
+                withSonarQubeEnv('Sonar-Server-9.6.1') {
+                def mavenHome = tool name: "Maven-3.9.0", type: "maven"
                 def mavenCMD = "${mavenHome}/bin/mvn"
                 sh "${mavenCMD} sonar:sonar"
                 }
@@ -29,7 +29,7 @@ node{
                         ],
                                 credentialsId: 'nexus3',
                                 groupId: 'in.ravi',
-                                nexusUrl: 'http://54.85.149.188:8081/repository/Sidgsrelease/',
+                                nexusUrl: 'http://18.190.160.50:8081/repository/Sidgsrelease/',
                                 nexusVersion: 'nexus3',
                                 repository: 'Sidgsrelease/',
                                 protocol: 'http',
